@@ -12,6 +12,7 @@ class ChannelVC: UIViewController {
 
 	//MARK: outlets
 	@IBOutlet weak var addChannelBtn: UIButton!
+	@IBOutlet weak var loginBtn: UIButton!
 	@IBOutlet weak var channelTable: UITableView!
 	
     override func viewDidLoad() {
@@ -25,4 +26,7 @@ class ChannelVC: UIViewController {
 		])
     }
 
+	@IBAction func loginBtnPressed(_ sender: Any) {
+		performSegue(withIdentifier: TO_LOGIN, sender: nil)
+	}
 }

@@ -30,7 +30,11 @@ class createAccountVC: UIViewController {
 		
 		AuthService.instance.registerUser(email: email, password: password) { (succ) in
 			if succ {
-				print("*REGISTERED USER*")
+				AuthService.instance.loginUser(email: email, password: password, completion: { (succ) in
+					if succ {
+						print("Logged in user: \(AuthService.instance.authToken)")
+					}
+				})
 			}
 		}
 	}
@@ -42,5 +46,4 @@ class createAccountVC: UIViewController {
 	@IBAction func closePressed(_ sender: Any) {
 		performSegue(withIdentifier: UNWIND, sender: nil)
 	}
-	
 }

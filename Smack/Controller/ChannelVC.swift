@@ -15,6 +15,10 @@ class ChannelVC: UIViewController {
 	@IBOutlet weak var loginBtn: UIButton!
 	@IBOutlet weak var channelTable: UITableView!
 	
+	@IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+		
+	}
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -160,6 +160,9 @@
                                         <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginPressed:" destination="wGa-fC-MUh" eventType="touchUpInside" id="L1p-xa-2DK"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="lIY-eP-cz4">
                                 <rect key="frame" x="50" y="170" width="275" height="94"/>
@@ -171,7 +174,7 @@
                                         </constraints>
                                         <color key="textColor" red="0.25882352939999997" green="0.3294117647" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="emailAddress"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBI-2Z-Du8">
                                         <rect key="frame" x="0.0" y="45" width="275" height="2"/>
@@ -238,6 +241,10 @@
                                     <action selector="createAccountPressed:" destination="wGa-fC-MUh" eventType="touchUpInside" id="4hH-jO-S1n"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="BXX-WR-ruJ">
+                                <rect key="frame" x="169" y="30" width="37" height="37"/>
+                                <color key="color" red="0.25882352939999997" green="0.3294117647" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -248,7 +255,9 @@
                             <constraint firstItem="lIY-eP-cz4" firstAttribute="leading" secondItem="Le0-AW-P2y" secondAttribute="leading" constant="50" id="XJq-ga-7cb"/>
                             <constraint firstItem="lIY-eP-cz4" firstAttribute="top" secondItem="1w8-uI-Fty" secondAttribute="bottom" constant="50" id="Zic-MD-oqK"/>
                             <constraint firstItem="Le0-AW-P2y" firstAttribute="trailing" secondItem="jxx-Q9-Wa4" secondAttribute="trailing" constant="15" id="amj-ea-zb2"/>
+                            <constraint firstItem="BXX-WR-ruJ" firstAttribute="top" secondItem="Le0-AW-P2y" secondAttribute="top" constant="10" id="f91-Je-Al8"/>
                             <constraint firstItem="1w8-uI-Fty" firstAttribute="centerX" secondItem="ur9-mL-DIg" secondAttribute="centerX" id="lBh-KQ-I6g"/>
+                            <constraint firstItem="BXX-WR-ruJ" firstAttribute="centerX" secondItem="ur9-mL-DIg" secondAttribute="centerX" id="nKh-vg-gix"/>
                             <constraint firstItem="Ss0-Wi-p7b" firstAttribute="top" secondItem="oX5-9V-N2I" secondAttribute="bottom" constant="5" id="ntn-pI-AeC"/>
                             <constraint firstItem="1w8-uI-Fty" firstAttribute="top" secondItem="Le0-AW-P2y" secondAttribute="top" constant="60" id="oCc-fJ-POI"/>
                             <constraint firstItem="Le0-AW-P2y" firstAttribute="trailing" secondItem="lIY-eP-cz4" secondAttribute="trailing" constant="50" id="oh8-AW-O6H"/>
@@ -260,6 +269,7 @@
                     </view>
                     <connections>
                         <outlet property="passwordTxt" destination="ymM-6F-DKi" id="kAe-nN-XcK"/>
+                        <outlet property="spinner" destination="BXX-WR-ruJ" id="nn3-hd-HU2"/>
                         <outlet property="usernameTxt" destination="EIA-xG-bsP" id="5wC-Co-kW0"/>
                         <segue destination="P8N-17-ujX" kind="show" identifier="toCreateAccount" id="8HG-BK-SKj"/>
                     </connections>
@@ -405,7 +415,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsc-zc-2No">
-                                <rect key="frame" x="137" y="321" width="100" height="130"/>
+                                <rect key="frame" x="137.5" y="321" width="100" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="axv-f9-spu"/>
                                 </constraints>
@@ -559,8 +569,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smack" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdV-Sc-yz1">
-                                        <rect key="frame" x="161.5" y="50" width="52" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="146.5" y="45.5" width="82" height="30"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>

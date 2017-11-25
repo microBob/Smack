@@ -122,6 +122,7 @@
                         <outlet property="addChannelBtn" destination="LSe-xt-JlM" id="4Ui-xS-8EO"/>
                         <outlet property="channelTable" destination="q5e-zh-nqH" id="b8t-cA-BD9"/>
                         <outlet property="loginBtn" destination="KxU-FH-JaL" id="G7I-S8-uwl"/>
+                        <outlet property="userImage" destination="MSv-2f-NGx" id="RdQ-vc-Uot"/>
                         <segue destination="wGa-fC-MUh" kind="show" identifier="toLogin" id="VbV-lq-E3B"/>
                     </connections>
                 </viewController>

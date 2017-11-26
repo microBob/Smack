@@ -51,3 +51,4 @@ let NOTIF_CHANNELS_SELECTED = Notification.Name("ChannelsSelected")
 //MARK: socket event keys
 let SOCKET_NEW_CHANNEL = "newChannel"
 let SOCKET_CHANNEL_CREATED = "channelCreated"
+let SOCKET_NEW_MESSAGE = "newMessage"

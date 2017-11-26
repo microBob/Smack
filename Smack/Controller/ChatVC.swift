@@ -27,8 +27,13 @@ class ChatVC: UIViewController {
 				}
 			})
 		}
+		MessageService.instance.findAllChannels { (succ) in
+			if succ {
+				print("Got Channels")
+			} else {
+				print("Didn't get Channels")
+			}
+		}
 		
     }
-
-
 }

@@ -12,6 +12,7 @@ class ChatVC: UIViewController {
 	
 	//MARK: Outlets
 	@IBOutlet weak var menuBtn: UIButton!
+	@IBOutlet weak var channelName: UILabel!
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,10 @@ class ChatVC: UIViewController {
 		menuBtn.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
 		self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
 		self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(ChatVC.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(ChatVC.channelSelected(_:)), name: NOTIF_CHANNELS_SELECTED, object: nil)
+		
 		
 		if AuthService.instance.isLoggedIn {
 			AuthService.instance.findUserByEmail(completion: { (succ) in
@@ -36,4 +41,27 @@ class ChatVC: UIViewController {
 		}
 		
     }
+	
+	@objc func userDataDidChange(_ notif: Notification) {
+		if AuthService.instance.isLoggedIn {
+			onLoginGetMessage()
+			channelName.text = "Smack"
+		} else {
+			channelName.text = "Please Login"
+		}
+	}
+	@objc func channelSelected(_ notif: Notification) {
+		updateWithChannels()
+	}
+	func onLoginGetMessage() {
+		MessageService.instance.findAllChannels { (succ) in
+			if succ {
+				
+			}
+		}
+	}
+	func updateWithChannels() {
+		let chName = MessageService.instance.selectedChannel?.channelTitle ?? ""
+		channelName.text = "#\(chName)"
+	}
 }

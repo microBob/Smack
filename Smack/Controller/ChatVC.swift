@@ -8,15 +8,19 @@
 
 import UIKit
 
-class ChatVC: UIViewController {
+class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	
 	//MARK: Outlets
 	@IBOutlet weak var menuBtn: UIButton!
 	@IBOutlet weak var channelName: UILabel!
 	@IBOutlet weak var messageTxt: UITextField!
+	@IBOutlet weak var messageTable: UITableView!
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		
+		messageTable.delegate = self
+		messageTable.dataSource = self
 		
 		view.bindToKeyboard()
 		
@@ -27,6 +31,8 @@ class ChatVC: UIViewController {
 		NotificationCenter.default.addObserver(self, selector: #selector(ChatVC.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(ChatVC.channelSelected(_:)), name: NOTIF_CHANNELS_SELECTED, object: nil)
 		
+		messageTable.estimatedRowHeight = 80
+		messageTable.rowHeight = UITableViewAutomaticDimension
 		
 		if AuthService.instance.isLoggedIn {
 			AuthService.instance.findUserByEmail(completion: { (succ) in
@@ -61,6 +67,24 @@ class ChatVC: UIViewController {
 	@objc func handleTap() {
 		view.endEditing(true)
 	}
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return MessageService.instance.messages.count
+	}
+	func numberOfSections(in tableView: UITableView) -> Int {
+		return 1
+	}
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		if let cell = messageTable.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as? MessageCell {
+			let message = MessageService.instance.messages[indexPath.row]
+			cell.configCell(message: message)
+			
+			return cell
+		}else {
+			return UITableViewCell()
+		}
+	}
+	
 	func onLoginGetMessage() {
 		MessageService.instance.findAllChannels { (succ) in
 			if succ {
@@ -82,7 +106,7 @@ class ChatVC: UIViewController {
 		guard let channelId = MessageService.instance.selectedChannel?.id else {return}
 		MessageService.instance.findAllMessagesForChannel(channelID: channelId) { (succ) in
 			if succ {
-				
+				self.messageTable.reloadData()
 			}else {
 				
 			}

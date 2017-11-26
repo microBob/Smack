@@ -49,7 +49,7 @@ class MessageService {
 				guard let data = resp.data else {return}
 				if let json = JSON(data: data).array {
 					for item in json {
-						self.messages.append(Message(message: item["messageBody"].stringValue, userName: item["userName"].stringValue, channelId: item["channelId"].stringValue, userAvatar: item["userName"].stringValue, userAvatarColor: item["userAvatarColor"].stringValue, id: item["_id"].stringValue, timeStamp: item["timeStamp"].stringValue))
+						self.messages.append(Message(message: item["messageBody"].stringValue, userName: item["userName"].stringValue, channelId: item["channelId"].stringValue, userAvatar: item["userAvatar"].stringValue, userAvatarColor: item["userAvatarColor"].stringValue, id: item["_id"].stringValue, timeStamp: item["timeStamp"].stringValue))
 					}
 					completion(true)
 				}

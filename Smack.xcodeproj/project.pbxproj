@@ -25,6 +25,7 @@
 		9F96BCB61FCB035700582F76 /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F96BCB51FCB035700582F76 /* SocketService.swift */; };
 		9F96BCBA1FCB2B4500582F76 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F96BCB91FCB2B4500582F76 /* Message.swift */; };
 		9F96BCBC1FCB354A00582F76 /* KeyboardBoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F96BCBB1FCB354A00582F76 /* KeyboardBoundView.swift */; };
+		9F96BCBE1FCB383500582F76 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F96BCBD1FCB383500582F76 /* MessageCell.swift */; };
 		9FFC6ECD1FC60A62000BAF25 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFC6ECC1FC60A62000BAF25 /* SWRevealViewController.m */; };
 		9FFC6ED21FC61097000BAF25 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFC6ED11FC61097000BAF25 /* ChatVC.swift */; };
 		9FFC6ED41FC610A8000BAF25 /* ChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFC6ED31FC610A8000BAF25 /* ChannelVC.swift */; };
@@ -58,6 +59,7 @@
 		9F96BCB51FCB035700582F76 /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
 		9F96BCB91FCB2B4500582F76 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		9F96BCBB1FCB354A00582F76 /* KeyboardBoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardBoundView.swift; sourceTree = "<group>"; };
+		9F96BCBD1FCB383500582F76 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		9FFC6ECA1FC60A60000BAF25 /* Smack-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Smack-Bridging-Header.h"; sourceTree = "<group>"; };
 		9FFC6ECB1FC60A61000BAF25 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		9FFC6ECC1FC60A62000BAF25 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				9F15E3DF1FC8F75D007F23EA /* CircleImage.swift */,
 				9FFFA1811FCA350D00B29F4E /* ChannelCell.swift */,
 				9F96BCBB1FCB354A00582F76 /* KeyboardBoundView.swift */,
+				9F96BCBD1FCB383500582F76 /* MessageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				9FFFA1821FCA350D00B29F4E /* ChannelCell.swift in Sources */,
 				9FFC6ED41FC610A8000BAF25 /* ChannelVC.swift in Sources */,
 				9F5C0B321FC78A53001432BE /* AvatarPickerVC.swift in Sources */,
+				9F96BCBE1FCB383500582F76 /* MessageCell.swift in Sources */,
 				9FFC6ED21FC61097000BAF25 /* ChatVC.swift in Sources */,
 				9F96BCBA1FCB2B4500582F76 /* Message.swift in Sources */,
 				9FFFA1801FC9FA3A00B29F4E /* Channel.swift in Sources */,

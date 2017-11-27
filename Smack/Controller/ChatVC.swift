@@ -16,6 +16,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	@IBOutlet weak var messageTxt: UITextField!
 	@IBOutlet weak var messageTable: UITableView!
 	@IBOutlet weak var sendBtn: UIButton!
+	@IBOutlet weak var typingUser: UILabel!
 	
 	var isTyping = false
 	
@@ -42,6 +43,31 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 					let index = IndexPath(row: MessageService.instance.messages.count - 1, section: 0)
 					self.messageTable.scrollToRow(at: index, at: .bottom, animated: true)
 				}
+			}
+		}
+		SocketService.instance.getTypingUsers { (typingUsers) in
+			guard let channelId = MessageService.instance.selectedChannel?.id else {return}
+			var names = ""
+			var numberOfTypers = 0
+			
+			for (typingUser, channel) in typingUsers {
+				if typingUser != UserDataService.instance.name && channel == channelId {
+					names = typingUser
+				} else {
+					names = "\(names), \(typingUser)"
+				}
+				numberOfTypers += 1
+			}
+			
+			if numberOfTypers > 0 && AuthService.instance.isLoggedIn {
+				var verb = "is"
+				if numberOfTypers > 1 {
+					verb = "are"
+				}
+				
+				self.typingUser.text = "\(names) \(verb) typing"
+			} else {
+				self.typingUser.text = ""
 			}
 		}
 		
@@ -128,12 +154,15 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 		}
 	}
 	@IBAction func editingStarted(_ sender: Any) {
+		guard let channelId = MessageService.instance.selectedChannel?.id else {return}
 		if messageTxt.text == "" {
 			isTyping = false
 			sendBtn.isHidden = true
+			SocketService.instance.socket.emit("stopType", UserDataService.instance.name, channelId)
 		} else {
 			if !isTyping {
 				sendBtn.isHidden = false
+				SocketService.instance.socket.emit("startType", UserDataService.instance.name, channelId)
 			}
 			isTyping = true
 		}
@@ -147,6 +176,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 				if succ {
 					self.messageTxt.text = ""
 					self.messageTxt.resignFirstResponder()
+					SocketService.instance.socket.emit("stopType", UserDataService.instance.name, chId)
 				}
 			})
 		}

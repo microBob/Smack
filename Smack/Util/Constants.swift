@@ -52,3 +52,4 @@ let NOTIF_CHANNELS_SELECTED = Notification.Name("ChannelsSelected")
 let SOCKET_NEW_CHANNEL = "newChannel"
 let SOCKET_CHANNEL_CREATED = "channelCreated"
 let SOCKET_NEW_MESSAGE = "newMessage"
+let SOCKET_MESSAGE_CREATED = "messageCreated"

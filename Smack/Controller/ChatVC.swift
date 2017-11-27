@@ -15,12 +15,16 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	@IBOutlet weak var channelName: UILabel!
 	@IBOutlet weak var messageTxt: UITextField!
 	@IBOutlet weak var messageTable: UITableView!
+	@IBOutlet weak var sendBtn: UIButton!
+	
+	var isTyping = false
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
 		messageTable.delegate = self
 		messageTable.dataSource = self
+		sendBtn.isHidden = true
 		
 		view.bindToKeyboard()
 		
@@ -30,6 +34,16 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(ChatVC.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(ChatVC.channelSelected(_:)), name: NOTIF_CHANNELS_SELECTED, object: nil)
+		
+		SocketService.instance.getChatMessage { (succ) in
+			if succ {
+				self.messageTable.reloadData()
+				if MessageService.instance.messages.count > 0 {
+					let index = IndexPath(row: MessageService.instance.messages.count - 1, section: 0)
+					self.messageTable.scrollToRow(at: index, at: .bottom, animated: true)
+				}
+			}
+		}
 		
 		messageTable.estimatedRowHeight = 80
 		messageTable.rowHeight = UITableViewAutomaticDimension
@@ -59,6 +73,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 			channelName.text = "Smack"
 		} else {
 			channelName.text = "Please Login"
+			messageTable.reloadData()
 		}
 	}
 	@objc func channelSelected(_ notif: Notification) {
@@ -110,6 +125,17 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 			}else {
 				
 			}
+		}
+	}
+	@IBAction func editingStarted(_ sender: Any) {
+		if messageTxt.text == "" {
+			isTyping = false
+			sendBtn.isHidden = true
+		} else {
+			if !isTyping {
+				sendBtn.isHidden = false
+			}
+			isTyping = true
 		}
 	}
 	@IBAction func sendMessagePressed(_ sender: Any) {

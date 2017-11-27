@@ -606,6 +606,9 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="editingStarted:" destination="wq3-aK-f6q" eventType="editingChanged" id="JpZ-d8-5VW"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4v-OG-0Gc">
                                 <rect key="frame" x="330" y="632" width="30" height="30"/>
@@ -696,6 +699,7 @@
                         <outlet property="menuBtn" destination="YBd-s5-3qO" id="zVJ-to-HQ4"/>
                         <outlet property="messageTable" destination="NPC-Ue-VfH" id="G1V-KK-FLk"/>
                         <outlet property="messageTxt" destination="Qcw-cq-Byd" id="58v-9C-teS"/>
+                        <outlet property="sendBtn" destination="j4v-OG-0Gc" id="LHG-dM-z1M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZHh-H1-ei2" userLabel="First Responder" sceneMemberID="firstResponder"/>
